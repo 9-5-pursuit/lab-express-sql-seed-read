@@ -1,10 +1,5 @@
 const express = require('express');
-const { getAllSongs } = require('../queries/songs');
-const { getOneSong } = require('../queries/songs');
-const { addRow } = require('../queries/songs');
-const { deleteRow } = require('../queries/songs');
-const { updateRow } = require('../queries/songs');
-//const bookmark = require()
+const { getAllSongs, getOneSong, addRow, deleteRow, updateRow } = require('../queries/songs');
 const router = express.Router();
 
 router.get('/', async(req, res) => {

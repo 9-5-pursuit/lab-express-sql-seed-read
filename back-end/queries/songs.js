@@ -30,8 +30,8 @@ const deleteRow = async(args) => {
 
 const updateRow = async(args, argsb) => {
     try {
-        const Updated = await db.any(`UPDATE songs SET name = '${args[0]}', artist = '${args[1]}', album = '${args[2]}'
-        , time = '${args[3]}', is_favorite = ${args[4]} WHERE id = ${args} RETURNING *`);
+        const Updated = await db.any(`UPDATE songs SET name = '${argsb[0]}', artist = '${argsb[1]}', album = '${argsb[2]}'
+        , time = '${argsb[3]}', is_favorite = ${argsb[4]} WHERE id = ${args} RETURNING *`);
         return Updated;
     } catch (e) { return e }
 };
