@@ -13,7 +13,6 @@ router.get('/', async(req, res) => {
     const getAlbum = await selectAlbums();
     if (getAlbum[0]) res.json(getAlbum);
     else res.redirect('/notfound')
-
 })
 
 module.exports = router;

@@ -8,4 +8,8 @@ http localhost:9009/songs order==asc
 http localhost:9009/songs order==desc
 
 http localhost:9009/albums album==example artist==example
+
+http localhost:9009/playlist/new/:name
+
+http localhost:9009/playlist/addSong name==example id==1
 ```

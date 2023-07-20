@@ -47,7 +47,7 @@ const AlbumTable = ({ isVisible }) => {
                                 <button type="button" className="btn-close" onClick={handleCloseModal}></button>
                             </div>
                             <div className="modal-body">
-                                <ul class="list-group list-group-flush">
+                                <ul className="list-group list-group-flush">
                                     {selectedData.map(item => {
                                         return (
                                             <li class="list-group-item" key={item.id}>{item.name}</li>

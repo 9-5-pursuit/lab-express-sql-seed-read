@@ -11,3 +11,5 @@ CREATE TABLE songs (
     time TEXT,
     is_favorite BOOLEAN
 );
+
+alter table songs add CONSTRAINT uc_songs_unique_combination UNIQUE (name, artist, album);

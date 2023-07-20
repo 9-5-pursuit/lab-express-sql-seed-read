@@ -8,7 +8,7 @@ const getAllSongs = async() => {
 };
 const getSongsOrdered = async(args) => {
     try {
-        const orderedSongs = await db.any(`SELECT * FROM songs order by name $1`, args);
+        const orderedSongs = await db.any(`SELECT * FROM songs order by name ${args}`);
         return orderedSongs;
     } catch (e) { return e }
 };
@@ -56,6 +56,21 @@ const updateRow = async(args, argsb) => {
     } catch (e) { return e }
 };
 
+const newPlaylist = async(args) => {
+    try {
+    const newTabl = await db.any(`CREATE TABLE ${args} (id INT PRIMARY KEY, name TEXT, artist TEXT, album TEXT, FOREIGN KEY(id) REFERENCES songs(id))`);
+    return newTabl;
+    } catch (e) { return e }
+}
+
+const newPlaylistItem = async(args, argsb) => {
+    try {
+        const addRow = await db.any(`insert into ${args} (id, name, artist, album) SELECT id, name, artist, album
+        FROM songs
+        WHERE id not in (select id from ${args}) and id = $1 RETURNING *`, argsb)
+        return addRow
+    } catch (e) { return e }
+}
 module.exports = {
     getAllSongs,
     getSongsOrdered,
@@ -65,4 +80,6 @@ module.exports = {
     addRow,
     deleteRow,
     updateRow,
+    newPlaylist,
+    newPlaylistItem,
 }

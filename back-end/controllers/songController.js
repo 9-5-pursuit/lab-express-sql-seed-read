@@ -5,8 +5,9 @@ const router = express.Router();
 
 
 router.get('/', async(req, res, next) => {
-    if(req.query.order == 'desc' || req.query.order == 'asc') {
-        const sortedSongs = await getSongsOrdered(req.query.order);
+    const order = req.query.order
+    if(order == 'desc' || order == 'asc') {
+        const sortedSongs = await getSongsOrdered(order);
         if (sortedSongs[0]) res.json(sortedSongs);
         else res.status(500).json({err: 'pg error'})
     } else {
