@@ -48,6 +48,13 @@ const deleteRow = async(args) => {
     } catch (e) { return e }
 };
 
+const delPlaylistRow = async(args, argsb) => {
+    try {
+        const Del = await db.any(`DELETE FROM ${args} where id = ${argsb} RETURNING *`);
+        return Del;
+    } catch (e) { return e }
+};
+
 const updateRow = async(args, argsb) => {
     try {
         const Updated = await db.any(`UPDATE songs SET name = $1, artist = $2, album = $3
@@ -56,6 +63,12 @@ const updateRow = async(args, argsb) => {
     } catch (e) { return e }
 };
 
+const getPlaylist = async(args) => {
+    try {
+    const newTabl = await db.any(`SELECT * FROM ${args}`);
+    return newTabl;
+    } catch (e) { return e }
+}
 const newPlaylist = async(args) => {
     try {
     const newTabl = await db.any(`CREATE TABLE ${args} (id INT PRIMARY KEY, name TEXT, artist TEXT, album TEXT, FOREIGN KEY(id) REFERENCES songs(id))`);
@@ -63,11 +76,11 @@ const newPlaylist = async(args) => {
     } catch (e) { return e }
 }
 
-const newPlaylistItem = async(args, argsb) => {
+const newPlaylistItem = async(args) => {
     try {
-        const addRow = await db.any(`insert into ${args} (id, name, artist, album) SELECT id, name, artist, album
+        const addRow = await db.any(`insert into ${args.name} (id, name, artist, album) SELECT id, name, artist, album
         FROM songs
-        WHERE id not in (select id from ${args}) and id = $1 RETURNING *`, argsb)
+        WHERE id not in (select id from ${args.name}) and id = $1 RETURNING *`, args.id)
         return addRow
     } catch (e) { return e }
 }
@@ -79,6 +92,8 @@ module.exports = {
     selectAlbums,
     addRow,
     deleteRow,
+    getPlaylist,
+    delPlaylistRow,
     updateRow,
     newPlaylist,
     newPlaylistItem,

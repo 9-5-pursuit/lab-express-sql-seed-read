@@ -9,6 +9,24 @@ export const fetchData = async () => {
         return [];
     }
 };
+export const fetchPlay = async (args) => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URLB}/get/${args}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+export const fetchOrderData = async () => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}`, { params: { order: 'asc'}});
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
 export const fetchAlbumData = async () => {
     try {
         const response = await axios.get(`${process.env.REACT_APP_API_URLA}`);
@@ -21,6 +39,24 @@ export const fetchAlbumData = async () => {
 export const fetchSongInfo = async (args) => {
     try {
         const response = await axios.get(`${process.env.REACT_APP_API_URLA}`, { params: { album: args.album, artist: args.artist } });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+export const newPlaylist = async (args) => {
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URLB}/new/${args}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
+export const newPlaylistRow = async (args, argsb) => {
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URLB}/addSong`, { name: args, id: argsb });
         return response.data;
     } catch (error) {
         console.error("Error fetching data:", error);

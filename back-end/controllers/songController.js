@@ -29,7 +29,7 @@ router.get('/:id', async(req, res) => {
 
 router.post('/', checkBoolean, checkPost, async(req, res) => {
     const newRow = await addRow(Object.values(req.body));
-    if (newRow[0]) res.json(newRow[0]);
+    if (newRow[0]) res.status(201).json(newRow[0]);
     else res.status(500).json({err: 'pg error'})
 })
 
