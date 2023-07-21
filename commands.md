@@ -9,7 +9,11 @@ http localhost:9009/songs order==desc
 
 http localhost:9009/albums album==example artist==example
 
-http localhost:9009/playlist/new/:name
+http localhost:9009/playlist/get/:name
+
+http POST localhost:9009/playlist/new/:name
 
 http POST localhost:9009/playlist/addSong name==example id==1
+
+http DELETE localhost:9009/playlist name==example id==1
 ```

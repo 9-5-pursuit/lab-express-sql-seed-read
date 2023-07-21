@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Home from './Home';
 import Nav from './Nav';
 import NewPlaylist from './NewPlaylist';

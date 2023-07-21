@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchData, setSongInfo, fetchPlay } from "./api";
+import { fetchData, fetchOrderData, setSongInfo, fetchPlay } from "./api";
 import { useNavigate } from "react-router-dom";
 
 const Table = ({ play }) => {
     const [data, setData] = useState([]);
     const [formData, setFormData] = useState(null);
-    const [playlist, setPlaylist] = useState([])
+    const [playlist, setPlaylist] = useState(null)
+    const [order, setOrder] = useState(false)
     const navigate = useNavigate()
 
     const handleInputChange = (event) => {
@@ -40,6 +41,11 @@ const Table = ({ play }) => {
         });
     };
 
+    const orderTable = () => {
+        let val = order ? 'desc' : 'asc'
+        fetchOrderData(val).then((apiData) => { setData(apiData); setOrder(!order) })
+    }
+
     const handleCloseModal = () => {
         setFormData(null);
     };
@@ -50,24 +56,24 @@ const Table = ({ play }) => {
     }, []);
 
     async function customLists() {
-        if (play.length > 0){ 
+        if (play.length > 0) {
+            let temp = []
             for (let item of play) {
-            const apiData = await fetchPlay(item)
-            setPlaylist([...playlist, apiData])
-            console.log(playlist)
+                const apiData = await fetchPlay(item)
+                temp.push(apiData)
             }
+            setPlaylist(temp)
         }
     }
- 
+
     return (
         <div className="container mt-4">
-            {JSON.stringify(playlist)}
-            <h2>Tuner Playlist</h2> <button onClick={() => navigate('/newplaylist/n')}>New Playlist</button>
+            <h2>Tuner Playlist</h2> <button onClick={() => navigate('/newplaylist')}>New Playlist</button>
             <table className="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th><span onClick={() => orderTable()}>Name</span><span className="large">{order ? '  a-z' : ' z-a'}</span></th>
                         <th>Artist</th>
                         <th>Album</th>
                         <th>Favorite</th>
@@ -77,7 +83,7 @@ const Table = ({ play }) => {
                     {data.map((item) => (
                         <tr key={item.id} style={{ cursor: "pointer" }} onClick={() => handleClickTable(item)}>
                             <td>{item.id}</td>
-                            <td>{item.name}</td>
+                            <td>{item.name}<span className="small">- {item.time}</span></td>
                             <td>{item.artist}</td>
                             <td>{item.album}</td>
                             <td>{item.is_favorite ? 'yes' : 'no'}</td>
@@ -85,28 +91,30 @@ const Table = ({ play }) => {
                     ))}
                 </tbody>
             </table>
-            {playlist.length > 0 && <h2>custom playlists</h2>}
-            { playlist.length > 0 && playlist.map((item, i) => {return (<div className="">
-                <h2>{play[i]}</h2>
-            <table className="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Artist</th>
-                        <th>Album</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {item.map((row) => (
-                        <tr key={row.id}>
-                            <td>{row.name}</td>
-                            <td>{row.artist}</td>
-                            <td>{row.album}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-            </div>)})}
+            {play.length > 0 && <h2>custom playlists</h2>}
+            {playlist && playlist.map((item, i) => {
+                return (<div className="">
+                    <h2>{play[i]}</h2>
+                    <table className="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Artist</th>
+                                <th>Album</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {item.map((row) => (
+                                <tr key={row.id}>
+                                    <td>{row.name}</td>
+                                    <td>{row.artist}</td>
+                                    <td>{row.album}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>)
+            })}
             {formData && (
                 <div className="modal" tabIndex="-1" role="dialog" style={{ display: "block" }}>
                     <div className="modal-dialog" role="document">

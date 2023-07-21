@@ -8,7 +8,7 @@ const NewPlaylist = ({ changePlay, play }) => {
     });
     const [data, setData] = useState(null);
     useEffect(() => {
-        fetchOrderData().then((apiData) => setData(apiData));
+        fetchOrderData('asc').then((apiData) => setData(apiData));
     }, []);
 
     const handleInputChange = (event) => {
@@ -29,7 +29,7 @@ const NewPlaylist = ({ changePlay, play }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (play.includes(formData.name)) return
+        if (play.includes(formData.name) || !formData.selectedOptions.length) return
         try {
             const response = await newPlaylist(formData.name)
             if (response.hasOwnProperty('response')) {
@@ -37,7 +37,7 @@ const NewPlaylist = ({ changePlay, play }) => {
                     var res = await newPlaylistRow(formData.name, item)
                     if (res[0].hasOwnProperty('id')) res = true
                 }
-                
+
                 if (res) {
                     changePlay(formData.name);
                     setFormData({
@@ -93,7 +93,7 @@ const NewPlaylist = ({ changePlay, play }) => {
                 </button>
             </form>
             }
-            {play.length>0 && (<div>
+            {play.length > 0 && (<div>
                 <h2>your playlists</h2>
                 <ul>
                     {
