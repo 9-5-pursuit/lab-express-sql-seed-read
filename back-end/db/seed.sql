@@ -300,14 +300,11 @@ insert into songs (name, artist, album, time, is_favorite) values ('Godfrey''s S
 insert into songs (name, artist, album, time, is_favorite) values ('Nevada Pea', 'Kendrick Lamar', 'Enchanted Journey', '07:20', false) ON CONFLICT (NAME, ARTIST, ALBUM) DO NOTHING;
 insert into songs (name, artist, album, time, is_favorite) values ('Sea Lettuce', 'Arctic Monkeys', 'Ephemeral Dreams', '08:23', false) ON CONFLICT (NAME, ARTIST, ALBUM) DO NOTHING;
 -- reduce the mock data set to groupings of artists with many songs on one album
-with cte as (select *, row_number() over (partition by artist) as r from
-(
-select array_agg(id) as agg, count(id) , artist, album from songs group by album, artist 
-order by artist, count desc
-) z
+delete from songs where id not in (
+with cte as (
+select array_agg(id) as ids, count(id) as len, artist, album from songs group by artist, album
 )
-delete from songs  where id not in (
-select unnest(agg) from (
-select * from cte where r = 1
-) n
+select unnest(ids) from (
+select *, DENSE_RANK() over (partition by artist order by len desc) as r from cte
+) v where r =1
 );
