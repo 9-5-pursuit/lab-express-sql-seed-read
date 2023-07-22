@@ -63,6 +63,15 @@ export const newPlaylistRow = async (args, argsb) => {
         return [];
     }
 };
+export const changeFav = async (args) => {
+    try {
+        const response = await axios.put(`${process.env.REACT_APP_API_URL}/${args.id}`, { name: args.name, artist: args.artist, album: args.album, time: args.time, is_favorite: !args.is_favorite});
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
 export const setSongInfo = async (args) => {
     try {
         const response = await axios.post(`${process.env.REACT_APP_API_URL}`, args);

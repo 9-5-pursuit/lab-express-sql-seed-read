@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchData, fetchOrderData, setSongInfo, fetchPlay } from "./api";
+import { fetchData, fetchOrderData, setSongInfo, fetchPlay, changeFav } from "./api";
 import { useNavigate } from "react-router-dom";
 
 const Table = ({ play }) => {
@@ -36,7 +36,7 @@ const Table = ({ play }) => {
             name: "",
             artist: data.artist,
             album: data.album,
-            time: new Date(),
+            time: data.time,
             is_favorite: data.is_favorite,
         });
     };
@@ -44,6 +44,10 @@ const Table = ({ play }) => {
     const orderTable = () => {
         let val = order ? 'desc' : 'asc'
         fetchOrderData(val).then((apiData) => { setData(apiData); setOrder(!order) })
+    }
+
+    const handleFav = (args) => {
+        changeFav(args).then((apiData) =>{let val = order ? 'asc' : 'desc'; if (apiData['id']) fetchOrderData(val).then((apiData) => setData(apiData))})
     }
 
     const handleCloseModal = () => {
@@ -81,12 +85,12 @@ const Table = ({ play }) => {
                 </thead>
                 <tbody>
                     {data.map((item) => (
-                        <tr key={item.id} style={{ cursor: "pointer" }} onClick={() => handleClickTable(item)}>
-                            <td>{item.id}</td>
+                        <tr key={item.id} style={{ cursor: "pointer" }} >
+                            <td><span onClick={() => handleClickTable(item)}>{item.id}</span></td>
                             <td>{item.name}<span className="small">- {item.time}</span></td>
                             <td>{item.artist}</td>
                             <td>{item.album}</td>
-                            <td>{item.is_favorite ? 'yes' : 'no'}</td>
+                            <td><span onClick={() => handleFav(item)} className="text-underline">{item.is_favorite ? 'yes' : 'no'}</span></td>
                         </tr>
                     ))}
                 </tbody>
