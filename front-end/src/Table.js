@@ -47,7 +47,7 @@ const Table = ({ play }) => {
     }
 
     const handleFav = (args) => {
-        changeFav(args).then((apiData) =>{let val = order ? 'asc' : 'desc'; if (apiData['id']) fetchOrderData(val).then((apiData) => setData(apiData))})
+        changeFav(args).then((apiData) => { setData(data.map(item => { if (item.id == args.id) return { ...item, is_favorite: apiData['is_favorite'] }; else return item })) })
     }
 
     const handleCloseModal = () => {
