@@ -30,8 +30,21 @@ const createSong = async (data) => {
   }
 };
 
+const deleteSong = async (id) => {
+  try {
+    const deletedSong = await db.any(
+      "DELETE FROM songs WHERE id = $1 RETURNING *",
+      id
+    );
+    return deletedSong;
+  } catch (e) {
+    return e;
+  }
+};
+
 module.exports = {
   getAllSongs,
   getIndividualSong,
   createSong,
+  deleteSong,
 };
