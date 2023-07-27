@@ -14,8 +14,8 @@ function App() {
           <Route path="/" element={<AllSongs />} />
           <Route path="/songs" element={<AllSongs />} />
           <Route path="/songs/new" element={<NewSong />} />
+          <Route path="/songs/:id" element={<Song />} />
           <Route path="/songs/:id/edit" element={<EditSong />} />
-          <Route path="/songs/:index" element={<Song />} />
           <Route path="/404" element={<h1>404 Not found</h1>} />
         </Routes>
       </Router>
