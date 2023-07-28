@@ -25,13 +25,13 @@ router.get("/:id", async (req, res) => {
   res.json(getSong);
 });
 
-router.post("/", checkName, async (req, res) => {
+router.post("/", async (req, res) => {
   const createdSong = await createSong(req.body);
   res.json(createdSong);
 });
 
 router.delete("/:id", async (req, res) => {
   const deletedSong = await deleteSong(req.params.id);
-  res.json(deletedSong[0]);
+  res.json(deletedSong);
 });
 module.exports = router;
