@@ -11,10 +11,10 @@ const getAllSongs = async () => {
 
 const getIndividualSong = async (id) => {
   try {
-    const getSong = await db.any("SELECT * FROM songs WHERE id = $1", id);
+    const getSong = await db.one("SELECT * FROM songs WHERE id = $1", id);
     return getSong;
   } catch (e) {
-    return e;
+    throw { status: 404, message: "Song not found" };
   }
 };
 
@@ -30,15 +30,27 @@ const createSong = async (data) => {
   }
 };
 
+const updateSong = async (id, data) => {
+  try {
+    const updatedSong = await db.one(
+      "UPDATE songs SET name = $1, artist = $2, album = $3, time = $4, is_favorite = $5 WHERE id = $6 RETURNING *",
+      [data.name, data.artist, data.album, data.time, data.is_favorite, id]
+    );
+    return updatedSong;
+  } catch (error) {
+    return error;
+  }
+};
+
 const deleteSong = async (id) => {
   try {
-    const deletedSong = await db.any(
+    const deletedSong = await db.one(
       "DELETE FROM songs WHERE id = $1 RETURNING *",
       id
     );
     return deletedSong;
   } catch (e) {
-    return e;
+    throw { status: 404, message: "Song not found" };
   }
 };
 
@@ -46,5 +58,6 @@ module.exports = {
   getAllSongs,
   getIndividualSong,
   createSong,
+  updateSong,
   deleteSong,
 };

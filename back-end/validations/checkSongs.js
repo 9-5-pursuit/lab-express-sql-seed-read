@@ -1,6 +1,24 @@
 const checkName = (req, res, next) => {
   if (!req.body.name) {
-    res.status(400).json({ error: "Name is required" });
+    res.status(400).json({ error: "Name is required!" });
+  } else {
+    next();
+  }
+};
+
+const checkIsFavorite = (req, res, next) => {
+  if (req.body.is_favorite === "false" || req.body.is_favorite === "true") {
+    next();
+  } else if (typeof req.body.is_favorite !== "boolean") {
+    res.status(400).json({ error: "Favorite is required!" });
+  } else {
+    next();
+  }
+};
+
+const checkArtist = (req, res, next) => {
+  if (!req.body.artist) {
+    res.status(400).json({ error: "Artist is required!" });
   } else {
     next();
   }
@@ -8,4 +26,6 @@ const checkName = (req, res, next) => {
 
 module.exports = {
   checkName,
+  checkIsFavorite,
+  checkArtist,
 };

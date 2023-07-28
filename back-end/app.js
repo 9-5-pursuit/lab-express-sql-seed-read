@@ -16,7 +16,7 @@ app.use(morgan());
 app.use("/songs", songController);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to Tuner App");
+  res.send("Welcome to Tuner");
 });
 
 app.get("*", (req, res) => {
