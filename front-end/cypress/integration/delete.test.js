@@ -39,7 +39,7 @@ describe("Show Page", () => {
       cy.get("button")
         .contains("Delete")
         .click()
-        .then(() => {
+        cy.get("button").contains("Yes").click();
           cy.url().should("eq", `${URL}/songs`);
           cy.get("a").each((item) => {
             cy.wrap(item)
@@ -49,6 +49,5 @@ describe("Show Page", () => {
               });
           });
         });
-    });
   });
 });
