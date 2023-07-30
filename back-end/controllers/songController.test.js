@@ -123,7 +123,7 @@ describe("Songs", () => {
           const response = await request(songs).post("/songs").send({
             name: "Star Roving",
             artist: "Slowdive",
-            is_favorite: "false",
+            is_favorite: false,
             time: "5:37",
           });
 
@@ -199,7 +199,7 @@ describe("Songs", () => {
           const response = await request(songs).put("/songs/1").send({
             name: "Bluebird of Happiness",
             artist: "Mojave 3",
-            is_favorite: "true",
+            is_favorite: true,
             time: "9:13",
           });
 
