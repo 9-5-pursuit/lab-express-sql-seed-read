@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-// import "./SongForm.css";
+import "./EditSong.css";
 import { Button } from "react-bootstrap";
 
 function EditSong() {
@@ -28,7 +28,7 @@ function EditSong() {
    }
 
     getSongByID();
-  }, [id]);
+  }, [id, url]);
 
   async function handleOnSubmit(e) {
     e.preventDefault();

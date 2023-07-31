@@ -1,0 +1,73 @@
+.song-container h2 {
+  padding: 25px 225px;
+  font-size: 32px;
+  color: rgb(130, 12, 12);
+}
+
+.Song-Details {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #a62727;
+  display: flex;
+  padding: 25px;
+  color: white;
+}
+
+.Song-Details p {
+  padding: 25px;
+  color: white;
+  font-size: 20px;
+}
+
+.Song-Details-navigation {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.Song-Details-navigation ul {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+  list-style: none;
+}
+
+.song-deletion-container-navigation {
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 25px;
+  background-color: rgb(198, 242, 255);
+}
+
+.song-deletion-container-navigation p {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.song-deletion-container-navigation ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.song-deletion-container-navigation ul li {
+  padding-left: 25px;
+  padding-right: 40px;
+  margin-bottom: 20px;
+}
+
+.artist-details {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+
+.artist-details ul {
+  list-style: none;
+}
+
+.artist-details ul li {
+  padding-left: 25px;
+  padding-right: 40px;
+  margin-bottom: 20px;
+}

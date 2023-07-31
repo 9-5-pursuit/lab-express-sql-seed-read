@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import "./SongForm.css";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import "./NewSong.css"
 
 function NewSong() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function NewSong() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${url}/songs`, song);
+      await axios.post(`${url}/songs`, song);
       navigate(`/songs`);
     } catch (e) {
       console.log(e);

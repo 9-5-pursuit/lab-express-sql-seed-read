@@ -1,39 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Button } from "react-bootstrap"
+import "./AllSongs.css";
 
 function AllSongs() {
-    let url = process.env.REACT_APP_API_URL;
+  let url = process.env.REACT_APP_API_URL;
   const [songsArray, setsongsArray] = useState([]);
 
-  async function fetchSongsData() {
-    try {
-      let result = await axios.get(`${url}/songs`);
-      setsongsArray(result.data);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
   useEffect(() => {
+    async function fetchSongsData() {
+      try {
+        let result = await axios.get(`${url}/songs`);
+        setsongsArray(result.data);
+      } catch (e) {
+        console.log(e);
+      }
+    }
     fetchSongsData();
-  }, []);
+  }, [url]);
 
   return (
     <div>
       <h2 className="h2-title">Index</h2>
-      <Link className="navlink" to="/songs/new">
-        <input type="submit" href="/songs/new" value="New Song" />
+      <Link className="navlink-button" to="/songs/new">
+          <input type="submit" href="/songs/new" value="New Song" />
       </Link>
       <div className="table-container">
         <table id="Songs">
           <tbody className="Songs">
             <tr>
-              <th>Fav</th>
-              <th>Song</th>
-              <th>Artist</th>
-              <th>Time</th>
+              <th><h3>Fav</h3></th>
+              <th><h3>Song</h3></th>
+              <th><h3>Artist</h3></th>
+              <th><h3>Time</h3></th>
             </tr>
 
             {songsArray.map(({ is_favorite, name, artist, time, id }) => {
@@ -42,19 +41,19 @@ function AllSongs() {
                   <td>{is_favorite && <>⭐️</>}</td>
 
                   <td>
-                    <Link to={`/songs/${id}`}>
+                    <Link className="song" to={`/songs/${id}`}>
                       <h2>{name}</h2>
                     </Link>
                   </td>
 
                   <td>
-                    <Link to={`/songs/${id}`}>
+                    <Link className="song" to={`/songs/${id}`}>
                       <h2>{artist}</h2>
                     </Link>
                   </td>
 
                   <td>
-                    <Link to={`/songs/${id}`}>
+                    <Link className="song" to={`/songs/${id}`}>
                       <h2>{time}</h2>
                     </Link>
                   </td>
