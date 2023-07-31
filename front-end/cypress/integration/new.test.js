@@ -45,7 +45,7 @@ describe("The New page", () => {
       cy.get("#is_favorite").check();
       cy.get("form").submit();
       cy.url().should("eq", "http://localhost:3000/songs");
-      cy.visit("http://localhost:3000/songs");
+      cy.visit("http://:3000/songs");
       cy.contains("PJ Harvey");
     });
   });
