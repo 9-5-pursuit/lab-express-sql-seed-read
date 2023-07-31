@@ -12,6 +12,56 @@ const getAllSongs = async () => {
   }
 };
 
+const getAllSongsAsc = async () => {
+  try {
+    const allSongs = await db.any("SELECT * FROM songs ORDER BY name ASC");
+    return allSongs;
+  } catch (error) {
+    return {
+      status: "Error",
+      message: error.message,
+    };
+  }
+};
+
+const getAllSongsDesc = async () => {
+  try {
+    const allSongs = await db.any("SELECT * FROM songs ORDER BY name DESC");
+    return allSongs;
+  } catch (error) {
+    return {
+      status: "Error",
+      message: error.message,
+    };
+  }
+};
+
+const getAllFavoriteSongs = async () => {
+  try {
+    const allSongs = await db.any("SELECT * FROM songs WHERE is_favorite = true");
+    return allSongs;
+  } catch (error) {
+    return {
+      status: "Error",
+      message: error.message,
+    };
+  }
+};
+
+const getAllNonFavoriteSongs = async () => {
+  try {
+    const allSongs = await db.any(
+      "SELECT * FROM songs WHERE is_favorite = false"
+    );
+    return allSongs;
+  } catch (error) {
+    return {
+      status: "Error",
+      message: error.message,
+    };
+  }
+};
+
 const getSongById = async (id) => {
     try {
         const song = await db.any("SELECT * FROM songs WHERE id=$1", id);
@@ -84,10 +134,30 @@ const updateSong = async (id, song) => {
   }
 };
 
+const getAllSongsOnArtistId = async (id) => {
+  try {
+    const artist = await db.any(
+      "SELECT * FROM songs WHERE artist_id = $1",
+      id
+    );
+    return artist;
+  } catch (error) {
+    return {
+      status: "Error",
+      message: error.message,
+    };
+  }
+};
+
 module.exports = {
   getAllSongs,
   getSongById,
   createNewSong,
   deleteSongById,
   updateSong,
+  getAllSongsAsc,
+  getAllSongsDesc,
+  getAllFavoriteSongs,
+  getAllNonFavoriteSongs,
+  getAllSongsOnArtistId,
 };
