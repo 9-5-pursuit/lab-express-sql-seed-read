@@ -1,10 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const reviewsController = require("./reviewsController");
-
-router.use("/:bookmarkId/reviews", reviewsController);
-
 const {
   getAllSongs,
   songById,
@@ -30,7 +26,7 @@ router.get("/:id", async (req, res) => {
 
   const song = await songById(id);
 
-  if (bookmark.length === 0) {
+  if (song.length === 0) {
     res.status(404).json({ error: "not found" });
   } else {
     res.json(song[0]);
