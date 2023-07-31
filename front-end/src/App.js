@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Home from './Home';
 import Nav from './Nav';
 import NewPlaylist from './NewPlaylist';
+import SongCard from './SongCard';
 function App() {
 
   const [play, setPlay] = useState([])
@@ -23,7 +24,8 @@ function App() {
     <Router>
     <Nav />
     <Routes>
-      <Route path='/home' element={<Home/>}/>
+      <Route path='/songs' element={<Home/>}/>
+      <Route path='/songs/:id' element={<SongCard/>}/>
       <Route path='/newplaylist' element={<NewPlaylist/>}/>
     </Routes>
   </Router>

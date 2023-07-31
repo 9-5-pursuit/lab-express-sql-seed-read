@@ -54,6 +54,15 @@ export const fetchSongInfo = async (args) => {
         return [];
     }
 };
+export const fetchSongById = async (args) => {
+    try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/${args}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return [];
+    }
+};
 export const newPlaylist = async (args) => {
     try {
         const response = await axios.post(`${process.env.REACT_APP_API_URLB}/new/${args}`);

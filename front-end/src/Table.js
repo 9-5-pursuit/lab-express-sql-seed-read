@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchData, fetchOrderData, setSongInfo, fetchPlay, changeFav } from "./api";
 import { useNavigate } from "react-router-dom";
-import { v1 as generateId } from 'uuid'
 
 const Table = ({ play }) => {
     const [data, setData] = useState([]);

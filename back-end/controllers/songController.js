@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllSongs, getSongsOrdered, getOneSong, makeAlTabl, addRow, deleteRow, updateRow } = require('../queries/songs');
+const { getAllSongs, getSongsOrdered, getOneSong, addRow, deleteRow, updateRow } = require('../queries/songs');
 const { checkParam, checkBoolean, checkPost, checkPut } = require('../validations/crudValidation')
 const router = express.Router();
 
