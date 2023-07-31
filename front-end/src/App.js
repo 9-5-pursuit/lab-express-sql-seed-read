@@ -1,4 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { TableContext } from "./components/context";
 import { useState } from 'react'
 import Home from './Home';
 import Nav from './Nav';
@@ -11,14 +12,22 @@ function App() {
     setPlay([...play, args])
   }
 
+  const setShowTables = {
+    play,
+    setPlay,
+    changePlay,
+  }
+
   return (
+    <TableContext.Provider value={setShowTables}>
     <Router>
     <Nav />
     <Routes>
-      <Route path='/home' element={<Home play={play}/>}/>
-      <Route path='/newplaylist' element={<NewPlaylist changePlay={ changePlay } play={play}/>}/>
+      <Route path='/home' element={<Home/>}/>
+      <Route path='/newplaylist' element={<NewPlaylist/>}/>
     </Routes>
   </Router>
+  </TableContext.Provider>
 
   );
 }

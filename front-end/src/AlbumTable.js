@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAlbumData, fetchSongInfo } from './api'
+import { fetchAlbumData, fetchSongInfo, removeSong } from './api'
 
 const AlbumTable = ({ isVisible }) => {
     if (!isVisible) return null;
@@ -10,8 +10,11 @@ const AlbumTable = ({ isVisible }) => {
         fetchSongInfo(data).then(res => { if (res[0].hasOwnProperty('id')) setSelectedData(res) })
     };
 
-    const handleCloseModal = () => {
+    const handleCloseModal = (args) => {
         setSelectedData(null);
+        if (args) {
+            removeSong(args).then(res => { if (res.hasOwnProperty('id')) console.log('deleted'); else console.log('fk playlist constraing').catch(e => { throw e }) });
+        }
     };
 
     useEffect(() => {
@@ -50,7 +53,10 @@ const AlbumTable = ({ isVisible }) => {
                                 <ul className="list-group list-group-flush">
                                     {selectedData.map(item => {
                                         return (
-                                            <li class="list-group-item" key={item.id}>{item.name}</li>
+                                            <li className="list-group-item" key={item.id}>{item.name} <span onClick={() => handleCloseModal(item.id)} style={{
+                                                textDecoration: 'underline',
+                                                color: 'red'
+                                            }}>delete</span></li>
                                         )
                                     })}
                                 </ul>

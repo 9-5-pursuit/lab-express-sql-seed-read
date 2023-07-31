@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchOrderData, newPlaylist, newPlaylistRow } from "./api";
+import { TableContext } from "./components/context";
 
-const NewPlaylist = ({ changePlay, play }) => {
+const NewPlaylist = () => {
+
+    const { changePlay, play } = useContext(TableContext)
     const [formData, setFormData] = useState({
         name: "",
         selectedOptions: [],

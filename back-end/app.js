@@ -14,8 +14,8 @@ app.use('/songs', songController)
 app.use('/albums', albumController)
 app.use('/playlist', playlistController)
 
-app.get('/', (req, res) => { res.send('welcome to Turner')})
-app.get('/notfound', (req, res) => { res.status(404).send('invalid request')})
+app.get('/', (req, res) => { res.send('welcome to Turner') })
+app.get('/notfound', (req, res) => { res.status(404).send('invalid request') })
 
 app.get('*', (req, res) => {
     res.send('page not found!')

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchData, fetchOrderData, setSongInfo, fetchPlay, changeFav } from "./api";
 import { useNavigate } from "react-router-dom";
+import { v1 as generateId } from 'uuid'
 
 const Table = ({ play }) => {
     const [data, setData] = useState([]);
@@ -101,15 +102,15 @@ const Table = ({ play }) => {
                     <h2>{play[i]}</h2>
                     <table className="table table-bordered">
                         <thead>
-                            <tr>
+                            <tr key={`playh-${i}`}>
                                 <th>Name</th>
                                 <th>Artist</th>
                                 <th>Album</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {item.map((row) => (
-                                <tr key={row.id}>
+                            {item.map((row, i) => (
+                                <tr key={`play-${row.id}`}>
                                     <td>{row.name}</td>
                                     <td>{row.artist}</td>
                                     <td>{row.album}</td>
