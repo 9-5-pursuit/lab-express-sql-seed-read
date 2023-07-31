@@ -1,0 +1,53 @@
+.h2-title {
+  display: flex;
+  padding: 25px 100px;
+  align-items: center;
+}
+
+.table-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+#Songs {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#Songs td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#Songs tr:nth-child(even) {
+  background-color: #bd3249;
+}
+
+#Songs tr:nth-child(odd) {
+  background-color: #a62727;
+}
+
+#Songs tr:hover {
+  background-color: #ddd;
+}
+
+th {
+  font-size: large;
+  ;
+}
+
+.song, th {
+  color: white;
+}
+
+.navlink-button {
+  text-decoration: none !important;
+  color: black;
+  display: -webkit-flex;
+  display: flex;
+  padding: 25px 100px;
+  justify-content: right;
+}
+

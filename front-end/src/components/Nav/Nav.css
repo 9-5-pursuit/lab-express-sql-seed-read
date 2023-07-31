@@ -1,0 +1,30 @@
+header {
+  background-color: #df6262;
+}
+
+header nav ul {
+  display: -webkit-flex;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: flex-end;
+}
+
+.navlink {
+  text-decoration: none !important;
+  color: black;
+  display: -webkit-flex;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  justify-content: center;
+}
+
+.left {
+  margin-right: auto;
+  padding: 45px 25px;
+}
+
+.right {
+  padding: 50px 25px;
+}
