@@ -1,25 +1,31 @@
 {
-  "name": "tuner-mono-repo",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jest": "^29.6.2",
+    "pg-promise": "^11.5.2",
+    "supertest": "^6.3.3"
+  },
+  "name": "tuner-full-stack",
   "version": "1.0.0",
-  "description": "Starter code for student lab",
   "main": "server.js",
   "scripts": {
-    "db:init": "psql -U postgres -f db/schema.sql",
-    "db:seed": "psql -U postgres -f db/seed.sql",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "pg:init": "psql -U postgres -f db/schema.sql",
+    "pg:seed": "psql -U postgres -f db/seed.sql"
   },
+  "keywords": [],
+  "author": "K. Rafalski",
+  "license": "ISC",
+  "description": "Starter code for student lab",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joinpursuit/tuner-full-stack-app.git"
   },
-  "author": "K. Rafalski",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joinpursuit/tuner-full-stack-app/issues"
-  },
-  "homepage": "https://github.com/joinpursuit/tuner-full-stack-app#readme",
-  "dependencies": {
-    "jest": "^27.4.7",
-    "supertest": "^6.2.0"
   }
 }
