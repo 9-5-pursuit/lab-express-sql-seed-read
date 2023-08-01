@@ -44,25 +44,20 @@ song.get("/:id", async (req, res) => {
 song.post("/", checkName, checkBoolean, checkArtist, async (req, res) => {
   const createdSong = await createSong(req.body);
   console.log(createdSong);
-  res.json(createdSong);
+  res.status(200).json(createdSong);
 });
 //UPDATE SONG
-song.put(
-  "/:id",
-  checkName,
-  checkArtist,
-  checkBoolean,
 
-  async (req, res) => {
-    const updatedSong = await updateSongById(req.params.id, req.body);
-    console.log(updatedSong);
-    if (updatedSong.length === 0) {
-      res.status(404).json({ message: "not found!", error: true });
-    } else {
-      res.json(updatedSong[0]);
-    }
+song.put("/:id", checkName, checkArtist, checkBoolean, async (req, res) => {
+  const { id } = req.params;
+  const updatedSong = await updateSongById(id, req.body);
+
+  if (!updatedSong) {
+    res.status(404).json({ message: "Song not found!", error: true });
+  } else {
+    res.status(200).json(updatedSong);
   }
-);
+});
 
 //DELETE SONG
 song.delete("/:id", async (req, res) => {
@@ -77,11 +72,11 @@ song.delete("/:id", async (req, res) => {
 
     const deletedSong = await deleteSong(id);
 
-    if (deletedSong.length === 0) {
+    if (!deletedSong) {
       res.status(404).json({ message: "No data found!", error: true });
     } else {
       console.log(deletedSong);
-      return res.json(deletedSong);
+      return res.status(200).json(deletedSong);
     }
   } catch (error) {
     console.log(error);
