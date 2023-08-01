@@ -1,9 +1,11 @@
-import React, { useState, useEffect, fragment } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Songs() {
   let url = process.env.REACT_APP_API_URL;
+
+  const navigate = useNavigate();
 
   const [songsData, setSongsData] = useState([]);
 
@@ -22,9 +24,17 @@ function Songs() {
   }, []);
 
   return (
-    <fragment>
-      <table class="table">
+    <div>
+      <table className="table">
         <thead>
+          <button
+            onClick={() => navigate("/songs/new")}
+            type="button"
+            class="btn btn-success"
+          >
+            {" "}
+            New
+          </button>
           <tr>
             <th scope="col">Song</th>
             <th scope="col">Artist</th>
@@ -33,13 +43,16 @@ function Songs() {
           </tr>
         </thead>
         <tbody>
-          {songsData.map((song) => (
-            <tr key={song.id}>
+          {songsData.map(({ id, name, artist, time, is_favorite }) => (
+            <tr key={id}>
               {/* <th scope="row">1</th> */}
-              <td>{song.name}</td>
-              <td>{song.artist}</td>
-              <td>{song.time}</td>
-              <td>{song.is_favorite}</td>
+              <td onClick={() => navigate(`/songs/${id}`)}>
+                {name}
+                {/* <Link to={`/songs/${id}`}></Link> <br /> */}
+              </td>
+              <td>{artist}</td>
+              <td>{time}</td>
+              <td>{is_favorite}</td>
             </tr>
           ))}
         </tbody>
@@ -58,7 +71,7 @@ function Songs() {
           );
         })}
       </ul> */}
-    </fragment>
+    </div>
   );
 }
 

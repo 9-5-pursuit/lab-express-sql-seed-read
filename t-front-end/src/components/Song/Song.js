@@ -19,9 +19,8 @@ function Song() {
   async function fetchSongById() {
     try {
       let result = await axios.get(`${url}/songs/${id}`);
-      //   console.log(result);
+      console.log(result);
       setSong(result.data);
-      console.log(song);
     } catch (e) {
       console.log(e);
     }
@@ -63,7 +62,3 @@ function Song() {
 }
 
 export default Song;
-
-/*
-  Current Task: Make the delete button work
-*/

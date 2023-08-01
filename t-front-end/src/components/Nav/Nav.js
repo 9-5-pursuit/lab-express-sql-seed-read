@@ -13,11 +13,6 @@ function Nav() {
               <h1>Tuner</h1>
             </Link>
           </li>
-          <li className="nav-right">
-            <Link to="/songs/new">
-              <h4>New</h4>
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>

@@ -11,7 +11,7 @@ function NewSongForm() {
     name: "",
     artist: "",
     album: "",
-    time: "",
+    time: 0,
     is_favorite: false,
   });
 
@@ -91,10 +91,6 @@ function NewSongForm() {
                 });
               }}
             />
-          </div>
-          <div>
-            <button>Back</button>
-            <button>Delete</button>
           </div>
 
           <button>Submit</button>
