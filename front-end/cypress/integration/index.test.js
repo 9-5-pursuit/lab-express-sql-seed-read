@@ -17,7 +17,7 @@ describe("Index page", () => {
   });
 
   it("Has the correct properties displayed", () => {
-    cy.get(".Song td").contains("Fame");
+    cy.get(".Songs td").contains("Fame");
     cy.get(".Songs td").contains("David Bowie");
     cy.get(".Songs td").contains("4:12");
     cy.get(".Songs td").contains("⭐️");
