@@ -14,11 +14,6 @@ import "./index.css";
 
 function App() {
   const [allSongs, setAllSongs] = useState([]);
-  const [name, setName] = useState("");
-  const [artist, setArtist] = useState("");
-  const [album, setAlbum] = useState("");
-  const [time, setTime] = useState("");
-  const [is_favorite, setIs_favorite] = useState("");
 
   const navigate = useNavigate();
 
@@ -49,16 +44,6 @@ function App() {
           allSongs,
           setAllSongs,
           handleDelete,
-          name,
-          setArtist,
-          album,
-          setAlbum,
-          artist,
-          setName,
-          time,
-          setTime,
-          is_favorite,
-          setIs_favorite,
         }}
       >
         <Routes>
