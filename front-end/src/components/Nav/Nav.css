@@ -1,0 +1,64 @@
+/* Nav.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(156, 25, 125);
+  padding: 10px;
+}
+
+.links {
+  margin-right: 15px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Change color for visited links (optional) */
+.navbar a:visited {
+  color: white;
+}
+
+/* Optional: Add styles for link hover and active states */
+.navbar a:hover {
+  color: lightgray;
+}
+
+.navbar a:active {
+  color: yellow;
+}
+
+/* Button-like styles for specific NavLink */
+.btn-link {
+  display: inline-block;
+  padding: 10px 20px;
+  /* background-color: #7922a8; */
+  color: #b130a8;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  /* Add additional styles to make it look like a button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+}
+
+/* Add higher specificity to override NavLink styles */
+.navbar .btn-link:hover {
+  background-color: #e9edf1;
+  color: #b130a8;
+}
+
+.navbar .btn-link:focus {
+  outline: none;
+}
+
+/* Optional: If you want to remove the button styles on active state */
+.navbar .btn-link:active {
+  background-color: #e9edf1;
+  color: #b130a8;
+}

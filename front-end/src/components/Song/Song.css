@@ -1,0 +1,25 @@
+/* styles.css */
+
+.button,
+.btn {
+  background-color: #ce17a0;
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  justify-content: space-around;
+}
+
+.button:hover {
+  background-color: #bd0e71;
+}
+
+/* .btn-group {
+  margin-top: 10px;
+} */
+
+.card {
+  background-color: #cdcdcd;
+}

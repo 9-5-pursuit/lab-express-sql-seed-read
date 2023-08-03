@@ -1,0 +1,11 @@
+/* styles.css */
+
+/* Add border-radius to make table borders slightly rounded */
+.table {
+  border-radius: 5px;
+}
+
+/* Add a subtle box-shadow to create a slight shadow effect */
+.table {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+}
