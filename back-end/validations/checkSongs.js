@@ -7,9 +7,7 @@ const checkName = (req, res, next) => {
 };
 
 const checkIsFavorite = (req, res, next) => {
-  if (req.body.is_favorite === "false" || req.body.is_favorite === "true") {
-    next();
-  } else if (typeof req.body.is_favorite !== "boolean") {
+  if (typeof !!req.body.is_favorite !== "boolean") {
     res.status(400).json({ error: "Favorite is required!" });
   } else {
     next();

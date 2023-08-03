@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const artistsController = require("./artistsController");
+
 const {
   getAllSongs,
   getIndividualSong,
@@ -14,6 +16,8 @@ const {
   checkIsFavorite,
   checkArtist,
 } = require("../validations/checkSongs");
+
+router.use("/:artistId/artists-songs", artistsController);
 
 router.get("/", async (req, res) => {
   try {
@@ -60,6 +64,7 @@ router.put(
   checkArtist,
   checkIsFavorite,
   async (req, res) => {
+    // res.json(req.body);
     try {
       const updatedSong = await updateSong(req.params.id, req.body);
       res.json(updatedSong);

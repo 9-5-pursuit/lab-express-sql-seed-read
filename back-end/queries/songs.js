@@ -15,6 +15,7 @@ const getIndividualSong = async (id) => {
     return getSong;
   } catch (e) {
     throw { status: 404, message: "Song not found" };
+    // return e;
   }
 };
 
