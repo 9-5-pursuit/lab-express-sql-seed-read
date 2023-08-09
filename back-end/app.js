@@ -1,22 +1,24 @@
-const cors = require("cors")
-const express = require("express")
-const morgan = require("morgan")
+const cors = require("cors");
+const express = require("express");
+const morgan = require("morgan");
 
-const songController = require("./controllers/songController")
+const songController = require("./controllers/songController");
+const artistController = require("./controllers/artistController");
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(express.json())
-app.use(morgan("dev"))
-app.use("/songs", songController)
+app.use(cors());
+app.use(express.json());
+app.use(morgan("dev"));
+app.use("/songs", songController);
+app.use("/artists", artistController);
 
 app.get("/", (req, res) => {
-    res.send("Welcome to Tuner")
-})
+  res.send("Welcome to Tuner");
+});
 
 app.get("*", (req, res) => {
-    res.status(404).send("Page not found")
-})
+  res.status(404).send("Page not found");
+});
 
-module.exports = app
+module.exports = app;

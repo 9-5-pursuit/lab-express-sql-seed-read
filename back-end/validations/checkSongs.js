@@ -15,12 +15,19 @@ const checkArtist = (req, res, next) => {
 };
 
 const checkBoolean = (req, res, next) => {
-  if (typeof req.body.is_favorite !== "boolean") {
-    res.status(400).json({ error: "is_favorite must be a boolean" });
-  } else {
+  if (
+    req.body.is_favorite === "true" ||
+    req.body.is_favorite === true ||
+    req.body.is_favorite === false
+  ) {
+    req.body.is_favorite = Boolean(req.body.is_favorite);
     next();
+  } else if (req.body.is_favorite === "false") {
+    req.body.is_favorite = false;
+    next();
+  } else {
+    res.status(400).json({ error: "is_favorite must be a boolean" });
   }
 };
-
 
 module.exports = { checkName, checkArtist, checkBoolean };
