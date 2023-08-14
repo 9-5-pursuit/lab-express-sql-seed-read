@@ -7,6 +7,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import SongDetails from "./Components/SongDetails/SongDetails";
 import NewSong from "./Components/NewSong/NewSong";
 import EditSong from "./Components/EditSong/EditSong";
+import Home from "./Components/Home/Home";
 
 import { SongsListContent } from "./Components/Context/Context";
 import { useNavigate } from "react-router-dom";
@@ -47,6 +48,7 @@ function App() {
         }}
       >
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/songs" element={<SongsList />} />
           <Route path="/songs/:id" element={<SongDetails />} />
           <Route path="/songs/new" element={<NewSong />} />
