@@ -1,0 +1,18 @@
+.form-container h2{
+    padding: 25px 25px;
+    font-size: 32px;
+}
+.song-form{
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: goldenrod;
+    padding: 35px 35px;
+}
+.form-container-input {
+    margin: 5px 0;
+  }
+  
+  .form-container-input input,
+  textarea {
+    width: 100%;
+  }

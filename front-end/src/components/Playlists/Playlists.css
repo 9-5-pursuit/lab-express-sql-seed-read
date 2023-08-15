@@ -1,0 +1,21 @@
+.Playlists{
+    color: aliceblue;
+    text-align: center;
+}
+
+
+.Playlist p {
+    font-size: 30px;
+}
+
+.Playlist button{
+   background-color: red;
+   color: aliceblue;
+   border-radius: 1rem;
+   outline: 0;
+   font-weight: bold ;
+   text-transform: uppercase;
+   padding: .5rem;
+}
+
+

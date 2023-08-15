@@ -1,0 +1,24 @@
+.edit-container h2 {
+    padding: 25px 25px;
+    font-size: 32px;
+  }
+  .edit-form {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: goldenrod;
+    padding: 35px 35px;
+  }
+
+  .edit-input {
+    margin: 5px 0;
+  }
+  .edit-input input,
+  textarea {
+    width: 100%;
+  }
+  .edit-input label {
+    margin-bottom: 5px;
+    display: inline-block;
+    
+  }
+  
