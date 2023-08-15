@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { SongsListContent } from "../Context/Context";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function EditSong() {
   const { id } = useParams();
@@ -17,11 +18,8 @@ function EditSong() {
   const { allSongs } = useContext(SongsListContent);
 
   useEffect(() => {
-    if (id.length === 1) {
+    if (id) {
       const foundSong = allSongs.find((item) => item.id === Number(id));
-      setSongInfo(foundSong);
-    } else {
-      const foundSong = allSongs.find((item) => item.id === id);
       setSongInfo(foundSong);
     }
   }, [allSongs, id]);
@@ -32,15 +30,14 @@ function EditSong() {
       ...songInfo,
     };
 
-    if (id.length === 1) {
+    if (id) {
       const find_Index = allSongs.findIndex((item) => item.id === Number(id));
       allSongs[find_Index] = updatedSong;
-    } else {
-      const find_Index = allSongs.findIndex((item) => item.id === id);
-      allSongs[find_Index] = updatedSong;
     }
+    axios.put(`http://localhost:3001/songs/${id}`, updatedSong);
     navigate("/songs");
   }
+
   function handleFavChange() {
     setSongInfo((prevState) => ({
       ...prevState,

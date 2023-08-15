@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { SongsListContent } from "../Context/Context";
-import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./NewSong.css";
 
 function NewSong() {
@@ -30,13 +30,13 @@ function NewSong() {
     });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const addedSong = {
-      id: uuidv4(),
       ...songInfo,
     };
     setAllSongs([...allSongs, addedSong]);
+    await axios.post("http://localhost:3001/songs", addedSong);
 
     navigate("/songs");
   }

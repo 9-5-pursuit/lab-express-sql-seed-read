@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { SongsListContent } from "../Context/Context";
 import { useParams, useNavigate } from "react-router-dom";
-
+import axios from "axios";
 import "./SongDetails.css";
 function SongDetails() {
   const { allSongs, handleDelete } = useContext(SongsListContent);
@@ -11,13 +11,11 @@ function SongDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (id.length === 1) {
+    if (id) {
       const foundSong = allSongs.find((item) => item.id === Number(id));
       setSongInfo(foundSong);
-    } else {
-      const foundSong = allSongs.find((item) => item.id === id);
-      setSongInfo(foundSong);
     }
+    axios.get(`http://localhost:3001/songs/${id}`);
   }, [allSongs, id]);
 
   function handleBack() {

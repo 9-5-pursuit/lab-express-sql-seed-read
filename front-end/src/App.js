@@ -34,6 +34,7 @@ function App() {
   function handleDelete(songId) {
     const updatedAllSongs = allSongs.filter((item) => item.id !== songId);
     setAllSongs(updatedAllSongs);
+    axios.delete(`http://localhost:3001/songs/${songId}`);
     navigate("/songs");
   }
 
