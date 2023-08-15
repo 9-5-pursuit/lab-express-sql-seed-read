@@ -1,0 +1,44 @@
+body{
+    background-color: black;
+}
+h2 {
+    text-align: center;
+    color: aliceblue;
+  }
+  
+  .table-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  #songs {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #songs td,
+  #songs th {
+    border: 1px solid gray;
+    padding: 8px;
+  }
+  
+  #songs tr:nth-child(even) {
+    background-color: rgb(87, 86, 86)
+  }
+  
+  #songs tr:hover {
+    background-color: goldenrod;
+  }
+  
+  #songs th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: goldenrod;
+    color: black;
+  }
+  
+  .songs-link {
+    color: aliceblue;
+  }
