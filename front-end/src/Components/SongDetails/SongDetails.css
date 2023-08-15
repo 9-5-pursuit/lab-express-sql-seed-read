@@ -1,0 +1,23 @@
+.details h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: "Arial", sans-serif;
+  color: #f5f5f5;
+}
+.buttons {
+  display: grid;
+  margin: 40px auto;
+  grid-template-columns: repeat(3, 1fr);
+}
+.buttons button {
+  width: 50%;
+  justify-self: center;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+button:hover {
+  background-color: rgba(50, 0, 0, 1);
+  color: #f5f5f5;
+}
