@@ -17,10 +17,6 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-//Index
-//Get all songs, and also gets songs based on query for ASC/DESC order
-//and also get all songs based on when query is_favorite
-//is true or when is_favorite is false
 router.get("/", async (req, res) => {
 
   let allSongs = await getAllSongs(req.params.artistId);
@@ -33,7 +29,6 @@ router.get("/", async (req, res) => {
 
 });
 
-//Get song by id
 router.get("/:id", async (req, res) => {
 
   console.log(req.params);
@@ -58,7 +53,6 @@ router.get("/:id", async (req, res) => {
 
 });
 
-//Create song
 router.post("/", checkName, checkArtist, checkBoolean, async (req, res) => {
   try {
 
@@ -70,7 +64,6 @@ router.post("/", checkName, checkArtist, checkBoolean, async (req, res) => {
   }
 });
 
-//Delete song by id
 router.delete("/:id", async (req, res) => {
   try {
 
@@ -87,7 +80,6 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//Update song by id
 router.put("/:id", checkName, checkArtist, checkBoolean, async (req, res) => {
   try {
 
@@ -104,7 +96,6 @@ router.put("/:id", checkName, checkArtist, checkBoolean, async (req, res) => {
   }
 });
 
-//Get all songs by an artist
 router.get("/:artistId", async (req, res) => {
   try {
     const allSongsByArtist = await getAllSongsOnArtist(req.params.artistId);
